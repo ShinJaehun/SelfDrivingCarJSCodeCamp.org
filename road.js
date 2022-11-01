@@ -32,39 +32,7 @@ class Road {
         ctx.lineWidth = 5;
         ctx.strokeStyle = "white";
 
-        // ctx.beginPath();
-        // ctx.moveTo(this.left, this.top);
-        // ctx.lineTo(this.left, this.bottom);
-        // ctx.stroke();
-
-        // ctx.beginPath();
-        // ctx.moveTo(this.right, this.top);
-        // ctx.lineTo(this.right, this.bottom);
-        // ctx.stroke();
-
-        // for (let i = 0; i <= this.laneCount; i++) {
-        //     const x = lerp(
-        //         // linear interpolation
-        //         this.left,
-        //         this.right,
-        //         i / this.laneCount
-        //     );
-
-        //     if (i > 0 && i < this.laneCount) {
-        //         // 중앙에 점선 표시
-        //         ctx.setLineDash([20,20]);
-        //     } else {
-        //         ctx.setLineDash([]);
-        //     }
-
-        //     ctx.beginPath();
-        //     ctx.moveTo(x, this.top);
-        //     ctx.lineTo(x, this.bottom);
-        //     ctx.stroke();
-        // }
-
         for (let i = 1; i <= this.laneCount - 1; i++) {
-            // 이건 중앙 점선
             const x = lerp(
                 this.left,
                 this.right,
@@ -79,7 +47,6 @@ class Road {
         }
 
         ctx.setLineDash([]);
-        // 헐 이 부분이 끝차선이었음!
         this.borders.forEach(border => {
             ctx.beginPath();
             ctx.moveTo(border[0].x, border[0].y);

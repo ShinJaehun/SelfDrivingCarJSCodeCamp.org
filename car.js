@@ -11,11 +11,13 @@ class Car {
         this.friction = 0.05;
         this.angle = 0;
 
+        this.sensor = new Sensor(this);
         this.controls = new Controls();
     }
 
-    update() {
+    update(roadBoarders) {
         this.#move();
+        this.sensor.update(roadBoarders); // 도로 경계를 sensor에게 넘기기 위해
     }
 
     #move(){
@@ -56,7 +58,6 @@ class Car {
         }
 
         this.x -= Math.sin(this.angle) * this.speed;
-        // this.y -= this.speed;
         this.y -= Math.cos(this.angle) * this.speed;
     }
 
@@ -66,11 +67,12 @@ class Car {
         ctx.rotate(-this.angle);
 
         ctx.beginPath();
-        // ctx.rect(this.x-this.width/2, this.y-this.height/2, this.width, this.height);
         ctx.rect(-this.width/2, -this.height/2, this.width, this.height);
         ctx.fill();
 
         ctx.restore();
+
+        this.sensor.draw(ctx);
     }
    
 }

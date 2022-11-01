@@ -4,22 +4,16 @@ canvas.width = 200;
 
 const ctx = canvas.getContext("2d");
 const road = new Road(canvas.width / 2, canvas.width * 0.9);
-// const car = new Car(100, 100, 30, 50);
 const car = new Car(road.getLaneCenter(1), 100, 30, 50);
 
-car.draw(ctx);
+// car.draw(ctx);  // 이거 그대로 둬서 sensor update할 때 계속 알 수 없는 오류가 있었음.
 
 animate();
 
 function animate() {
     // car.update();
-    // canvas.height = window.innerHeight;  // canvas를 삭제할 필요 없이 이걸 여기로 옮겨서 문제 해결!
-    // road.draw(ctx);
-    // car.draw(ctx);
-    // requestAnimationFrame(animate);
+    car.update(road.borders); // 도로 경계를 sensor에게 넘기기 위해
 
-    car.update();
-    // car 자체는 y 값이 움직이지 않는데 배경 전체가 이동하도록!
     canvas.height = window.innerHeight;
 
     ctx.save();
